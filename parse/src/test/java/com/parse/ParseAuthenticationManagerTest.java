@@ -41,7 +41,7 @@ public class ParseAuthenticationManagerTest {
 
     @Test
     public void testRegisterMultipleShouldThrow() {
-        when(controller.getAsync(false)).thenReturn(Task.<ParseUser>forResult(null));
+        when(controller.getAsync(false)).thenReturn(Task.forResult(null));
         AuthenticationCallback provider2 = mock(AuthenticationCallback.class);
 
         manager.register("test_provider", provider);
@@ -70,7 +70,7 @@ public class ParseAuthenticationManagerTest {
 
     @Test
     public void testRestoreAuthentication() throws ParseException {
-        when(controller.getAsync(false)).thenReturn(Task.<ParseUser>forResult(null));
+        when(controller.getAsync(false)).thenReturn(Task.forResult(null));
         when(provider.onRestore(any())).thenReturn(true);
         manager.register("test_provider", provider);
 
@@ -82,7 +82,7 @@ public class ParseAuthenticationManagerTest {
 
     @Test
     public void testDeauthenticateAsync() throws ParseException {
-        when(controller.getAsync(false)).thenReturn(Task.<ParseUser>forResult(null));
+        when(controller.getAsync(false)).thenReturn(Task.forResult(null));
         manager.register("test_provider", provider);
 
         ParseTaskUtils.wait(manager.deauthenticateAsync("test_provider"));

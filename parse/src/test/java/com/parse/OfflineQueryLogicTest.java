@@ -1078,7 +1078,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesParseObject() throws ParseException {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), any(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseSQLiteDatabase db = mock(ParseSQLiteDatabase.class);
 
@@ -1099,7 +1099,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesCollection() throws ParseException {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), any(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseSQLiteDatabase db = mock(ParseSQLiteDatabase.class);
 
@@ -1122,7 +1122,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesJSONArray() throws ParseException {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), any(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseSQLiteDatabase db = mock(ParseSQLiteDatabase.class);
 
@@ -1145,7 +1145,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesMap() throws ParseException {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), any(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseSQLiteDatabase db = mock(ParseSQLiteDatabase.class);
 
@@ -1168,7 +1168,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesJSONObject() throws Exception {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), any(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseSQLiteDatabase db = mock(ParseSQLiteDatabase.class);
 
@@ -1191,7 +1191,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesNull() throws ParseException {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), nullable(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseQuery.State<ParseObject> query =
                 new ParseQuery.State.Builder<>("TestObject").include("foo").build();
@@ -1209,7 +1209,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesNonParseObject() throws ParseException {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), nullable(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseQuery.State<ParseObject> query =
                 new ParseQuery.State.Builder<>("TestObject").include("foo").build();
@@ -1230,7 +1230,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesDoesNotExist() throws ParseException {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), nullable(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseQuery.State<ParseObject> query =
                 new ParseQuery.State.Builder<>("TestObject").include("foo").build();
@@ -1247,7 +1247,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesNestedNull() throws Exception {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), nullable(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseQuery.State<ParseObject> query =
                 new ParseQuery.State.Builder<>("TestObject").include("foo.bar").build();
@@ -1265,7 +1265,7 @@ public class OfflineQueryLogicTest {
     public void testFetchIncludesNestedNonParseObject() throws Exception {
         OfflineStore store = mock(OfflineStore.class);
         when(store.fetchLocallyAsync(any(ParseObject.class), nullable(ParseSQLiteDatabase.class)))
-                .thenReturn(Task.<ParseObject>forResult(null));
+                .thenReturn(Task.forResult(null));
 
         ParseQuery.State<ParseObject> query =
                 new ParseQuery.State.Builder<>("TestObject").include("foo.bar").build();

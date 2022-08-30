@@ -192,7 +192,7 @@ public class ParseConfigControllerTest {
         ParseCurrentConfigController currentConfigController =
                 mock(ParseCurrentConfigController.class);
         when(currentConfigController.setCurrentConfigAsync(any(ParseConfig.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         return currentConfigController;
     }
 

@@ -255,7 +255,7 @@ public class ParsePushTest {
     @Test
     public void testSubscribeInBackgroundSuccess() throws Exception {
         ParsePushChannelsController controller = mock(ParsePushChannelsController.class);
-        when(controller.subscribeInBackground(anyString())).thenReturn(Task.<Void>forResult(null));
+        when(controller.subscribeInBackground(anyString())).thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushChannelsController(controller);
 
         ParseTaskUtils.wait(ParsePush.subscribeInBackground("test"));
@@ -265,7 +265,7 @@ public class ParsePushTest {
     @Test
     public void testSubscribeInBackgroundWithCallbackSuccess() throws Exception {
         final ParsePushChannelsController controller = mock(ParsePushChannelsController.class);
-        when(controller.subscribeInBackground(anyString())).thenReturn(Task.<Void>forResult(null));
+        when(controller.subscribeInBackground(anyString())).thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushChannelsController(controller);
 
         ParsePush push = new ParsePush();
@@ -290,7 +290,7 @@ public class ParsePushTest {
         ParsePushChannelsController controller = mock(ParsePushChannelsController.class);
         ParseException exception = new ParseException(ParseException.OTHER_CAUSE, "error");
         when(controller.subscribeInBackground(anyString()))
-                .thenReturn(Task.<Void>forError(exception));
+                .thenReturn(Task.forError(exception));
         ParseCorePlugins.getInstance().registerPushChannelsController(controller);
 
         Task<Void> pushTask = ParsePush.subscribeInBackground("test");
@@ -305,7 +305,7 @@ public class ParsePushTest {
         ParsePushChannelsController controller = mock(ParsePushChannelsController.class);
         final ParseException exception = new ParseException(ParseException.OTHER_CAUSE, "error");
         when(controller.subscribeInBackground(anyString()))
-                .thenReturn(Task.<Void>forError(exception));
+                .thenReturn(Task.forError(exception));
         ParseCorePlugins.getInstance().registerPushChannelsController(controller);
 
         ParsePush push = new ParsePush();
@@ -333,7 +333,7 @@ public class ParsePushTest {
     public void testUnsubscribeInBackgroundSuccess() throws Exception {
         ParsePushChannelsController controller = mock(ParsePushChannelsController.class);
         when(controller.unsubscribeInBackground(anyString()))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushChannelsController(controller);
 
         ParseTaskUtils.wait(ParsePush.unsubscribeInBackground("test"));
@@ -344,7 +344,7 @@ public class ParsePushTest {
     public void testUnsubscribeInBackgroundWithCallbackSuccess() throws Exception {
         final ParsePushChannelsController controller = mock(ParsePushChannelsController.class);
         when(controller.unsubscribeInBackground(anyString()))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushChannelsController(controller);
 
         final Semaphore done = new Semaphore(0);
@@ -368,7 +368,7 @@ public class ParsePushTest {
         ParsePushChannelsController controller = mock(ParsePushChannelsController.class);
         ParseException exception = new ParseException(ParseException.OTHER_CAUSE, "error");
         when(controller.unsubscribeInBackground(anyString()))
-                .thenReturn(Task.<Void>forError(exception));
+                .thenReturn(Task.forError(exception));
         ParseCorePlugins.getInstance().registerPushChannelsController(controller);
 
         Task<Void> pushTask = ParsePush.unsubscribeInBackground("test");
@@ -383,7 +383,7 @@ public class ParsePushTest {
         ParsePushChannelsController controller = mock(ParsePushChannelsController.class);
         final ParseException exception = new ParseException(ParseException.OTHER_CAUSE, "error");
         when(controller.unsubscribeInBackground(anyString()))
-                .thenReturn(Task.<Void>forError(exception));
+                .thenReturn(Task.forError(exception));
         ParseCorePlugins.getInstance().registerPushChannelsController(controller);
 
         ParsePush push = new ParsePush();
@@ -436,7 +436,7 @@ public class ParsePushTest {
         // Mock controller
         ParsePushController controller = mock(ParsePushController.class);
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -466,7 +466,7 @@ public class ParsePushTest {
         // Mock controller
         ParsePushController controller = mock(ParsePushController.class);
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -507,7 +507,7 @@ public class ParsePushTest {
         ParsePushController controller = mock(ParsePushController.class);
         ParseException exception = new ParseException(ParseException.OTHER_CAUSE, "error");
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forError(exception));
+                .thenReturn(Task.forError(exception));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -542,7 +542,7 @@ public class ParsePushTest {
         ParsePushController controller = mock(ParsePushController.class);
         final ParseException exception = new ParseException(ParseException.OTHER_CAUSE, "error");
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forError(exception));
+                .thenReturn(Task.forError(exception));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -582,7 +582,7 @@ public class ParsePushTest {
         // Mock controller
         ParsePushController controller = mock(ParsePushController.class);
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -613,7 +613,7 @@ public class ParsePushTest {
         ParsePushController controller = mock(ParsePushController.class);
         final ParseException exception = new ParseException(ParseException.OTHER_CAUSE, "error");
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forError(exception));
+                .thenReturn(Task.forError(exception));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -650,7 +650,7 @@ public class ParsePushTest {
         // Mock controller
         ParsePushController controller = mock(ParsePushController.class);
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -677,7 +677,7 @@ public class ParsePushTest {
         // Mock controller
         ParsePushController controller = mock(ParsePushController.class);
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -720,7 +720,7 @@ public class ParsePushTest {
         // Mock controller
         ParsePushController controller = mock(ParsePushController.class);
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method
@@ -750,7 +750,7 @@ public class ParsePushTest {
         // Mock controller
         ParsePushController controller = mock(ParsePushController.class);
         when(controller.sendInBackground(any(ParsePush.State.class), nullable(String.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerPushController(controller);
 
         // Make sample ParsePush data and call method

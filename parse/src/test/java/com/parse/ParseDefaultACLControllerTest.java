@@ -102,7 +102,7 @@ public class ParseDefaultACLControllerTest {
         // Register currentUser
         ParseCurrentUserController currentUserController = mock(ParseCurrentUserController.class);
         when(currentUserController.getAsync(anyBoolean()))
-                .thenReturn(Task.<ParseUser>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerCurrentUserController(currentUserController);
 
         ParseACL defaultACL = controller.get();

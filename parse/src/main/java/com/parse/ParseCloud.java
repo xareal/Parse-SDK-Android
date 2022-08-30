@@ -82,7 +82,7 @@ public final class ParseCloud {
      */
     public static <T> T callFunction(@NonNull String name, @NonNull Map<String, ?> params)
             throws ParseException {
-        return ParseTaskUtils.wait(ParseCloud.<T>callFunctionInBackground(name, params));
+        return ParseTaskUtils.wait(ParseCloud.callFunctionInBackground(name, params));
     }
 
     /**
@@ -98,6 +98,6 @@ public final class ParseCloud {
             @NonNull Map<String, ?> params,
             @NonNull FunctionCallback<T> callback) {
         ParseTaskUtils.callbackOnMainThreadAsync(
-                ParseCloud.<T>callFunctionInBackground(name, params), callback);
+                ParseCloud.callFunctionInBackground(name, params), callback);
     }
 }

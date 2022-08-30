@@ -34,7 +34,7 @@ final class ParseTestUtils {
         ParseCurrentUserController currentUserController = mock(ParseCurrentUserController.class);
         when(currentUserController.getAsync()).thenReturn(Task.forResult(mock(ParseUser.class)));
         when(currentUserController.getCurrentSessionTokenAsync())
-                .thenReturn(Task.<String>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerCurrentUserController(currentUserController);
     }
 

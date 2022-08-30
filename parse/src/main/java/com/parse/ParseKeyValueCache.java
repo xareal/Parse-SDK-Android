@@ -12,6 +12,7 @@ import android.content.Context;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Date;
 import org.json.JSONException;
@@ -120,7 +121,7 @@ class ParseKeyValueCache {
             }
             File f = createKeyValueCacheFile(key);
             try {
-                ParseFileUtils.writeByteArrayToFile(f, value.getBytes("UTF-8"));
+                ParseFileUtils.writeByteArrayToFile(f, value.getBytes(StandardCharsets.UTF_8));
             } catch (IOException e) {
                 // do nothing
             }
@@ -207,7 +208,7 @@ class ParseKeyValueCache {
                 byte[] bytes = new byte[(int) f.length()];
                 f.readFully(bytes);
                 f.close();
-                return new String(bytes, "UTF-8");
+                return new String(bytes, StandardCharsets.UTF_8);
             } catch (IOException e) {
                 PLog.e(TAG, "error reading from cache", e);
                 return null;

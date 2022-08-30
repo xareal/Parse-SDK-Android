@@ -195,7 +195,7 @@ public class ParseEncoderTest {
     @Test
     public void testIllegalArgument() {
         thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("invalid type for ParseObject: " + ParseDecoder.class.toString());
+        thrown.expectMessage("invalid type for ParseObject: " + ParseDecoder.class);
         testClassObject.encode(ParseDecoder.get());
     }
 

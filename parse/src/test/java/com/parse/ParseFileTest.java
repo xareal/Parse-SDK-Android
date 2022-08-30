@@ -157,7 +157,7 @@ public class ParseFileTest {
         ParseFile.State state = new ParseFile.State.Builder().build();
         ParseFile file = new ParseFile(state);
 
-        Task<Void> task = file.saveAsync(null, null, Task.<Void>cancelled());
+        Task<Void> task = file.saveAsync(null, null, Task.cancelled());
         task.waitForCompletion();
         assertTrue(task.isCancelled());
 

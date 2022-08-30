@@ -53,7 +53,7 @@ public class OfflineObjectStoreTest {
     @Test
     public void testSetAsync() throws Exception {
         OfflineStore lds = mock(OfflineStore.class);
-        when(lds.unpinAllObjectsAsync(anyString())).thenReturn(Task.<Void>forResult(null));
+        when(lds.unpinAllObjectsAsync(anyString())).thenReturn(Task.forResult(null));
         when(lds.pinAllObjectsAsync(anyString(), anyList(), anyBoolean()))
                 .thenReturn(Task.forResult(null));
         Parse.setLocalDatastore(lds);
@@ -103,12 +103,12 @@ public class OfflineObjectStoreTest {
                                 Arrays.asList(mock(ParseUser.class), mock(ParseUser.class))));
         ParseCorePlugins.getInstance().registerQueryController(queryController);
         OfflineStore lds = mock(OfflineStore.class);
-        when(lds.unpinAllObjectsAsync(anyString())).thenReturn(Task.<Void>forResult(null));
+        when(lds.unpinAllObjectsAsync(anyString())).thenReturn(Task.forResult(null));
         Parse.setLocalDatastore(lds);
 
         @SuppressWarnings("unchecked")
         ParseObjectStore<ParseUser> legacy = mock(ParseObjectStore.class);
-        when(legacy.getAsync()).thenReturn(Task.<ParseUser>forResult(null));
+        when(legacy.getAsync()).thenReturn(Task.forResult(null));
 
         OfflineObjectStore<ParseUser> store =
                 new OfflineObjectStore<>(ParseUser.class, PIN_NAME, legacy);
@@ -133,18 +133,18 @@ public class OfflineObjectStoreTest {
         OfflineStore lds = mock(OfflineStore.class);
         when(lds.pinAllObjectsAsync(anyString(), anyList(), anyBoolean()))
                 .thenReturn(Task.forResult(null));
-        when(lds.unpinAllObjectsAsync(anyString())).thenReturn(Task.<Void>forResult(null));
+        when(lds.unpinAllObjectsAsync(anyString())).thenReturn(Task.forResult(null));
         when(lds.pinAllObjectsAsync(anyString(), anyList(), anyBoolean()))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         Parse.setLocalDatastore(lds);
 
         ParseUser user = mock(ParseUser.class);
         when(user.pinInBackground(anyString(), anyBoolean()))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         @SuppressWarnings("unchecked")
         ParseObjectStore<ParseUser> legacy = mock(ParseObjectStore.class);
         when(legacy.getAsync()).thenReturn(Task.forResult(user));
-        when(legacy.deleteAsync()).thenReturn(Task.<Void>forResult(null));
+        when(legacy.deleteAsync()).thenReturn(Task.forResult(null));
 
         OfflineObjectStore<ParseUser> store =
                 new OfflineObjectStore<>(ParseUser.class, PIN_NAME, legacy);
@@ -215,12 +215,12 @@ public class OfflineObjectStoreTest {
     @Test
     public void testDeleteAsync() throws Exception {
         OfflineStore lds = mock(OfflineStore.class);
-        when(lds.unpinAllObjectsAsync(anyString())).thenReturn(Task.<Void>forResult(null));
+        when(lds.unpinAllObjectsAsync(anyString())).thenReturn(Task.forResult(null));
         Parse.setLocalDatastore(lds);
 
         @SuppressWarnings("unchecked")
         ParseObjectStore<ParseUser> legacy = mock(ParseObjectStore.class);
-        when(legacy.deleteAsync()).thenReturn(Task.<Void>forResult(null));
+        when(legacy.deleteAsync()).thenReturn(Task.forResult(null));
 
         OfflineObjectStore<ParseUser> store =
                 new OfflineObjectStore<>(ParseUser.class, PIN_NAME, legacy);
@@ -234,12 +234,12 @@ public class OfflineObjectStoreTest {
     public void testDeleteAsyncFailure() throws Exception {
         OfflineStore lds = mock(OfflineStore.class);
         when(lds.unpinAllObjectsAsync(anyString()))
-                .thenReturn(Task.<Void>forError(new RuntimeException("failure")));
+                .thenReturn(Task.forError(new RuntimeException("failure")));
         Parse.setLocalDatastore(lds);
 
         @SuppressWarnings("unchecked")
         ParseObjectStore<ParseUser> legacy = mock(ParseObjectStore.class);
-        when(legacy.deleteAsync()).thenReturn(Task.<Void>forResult(null));
+        when(legacy.deleteAsync()).thenReturn(Task.forResult(null));
 
         OfflineObjectStore<ParseUser> store =
                 new OfflineObjectStore<>(ParseUser.class, PIN_NAME, legacy);

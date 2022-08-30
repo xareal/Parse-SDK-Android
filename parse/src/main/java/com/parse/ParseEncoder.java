@@ -142,7 +142,7 @@ public abstract class ParseEncoder {
         }
 
         throw new IllegalArgumentException(
-                "invalid type for ParseObject: " + object.getClass().toString());
+                "invalid type for ParseObject: " + object.getClass());
     }
 
     protected abstract JSONObject encodeRelatedObject(ParseObject object);

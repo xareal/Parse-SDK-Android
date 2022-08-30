@@ -122,7 +122,7 @@ class ParseHttpClient {
             default:
                 // This case will never be reached since we have already handled this case in
                 // ParseRequest.newRequest().
-                throw new IllegalStateException("Unsupported http method " + method.toString());
+                throw new IllegalStateException("Unsupported http method " + method);
         }
         // Set url
         okHttpRequestBuilder.url(parseRequest.getUrl());

@@ -406,7 +406,7 @@ public class ParseRESTCommandTest {
         String message =
                 String.format(
                         "Trying to execute a %s command without body parameters.",
-                        ParseHttpRequest.Method.GET.toString());
+                        ParseHttpRequest.Method.GET);
         thrown.expectMessage(message);
 
         command.newBody(null);

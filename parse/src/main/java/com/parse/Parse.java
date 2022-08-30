@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -372,7 +373,7 @@ public class Parse {
                         byte[] bytes = new byte[(int) f.length()];
                         f.readFully(bytes);
                         f.close();
-                        String diskApplicationId = new String(bytes, "UTF-8");
+                        String diskApplicationId = new String(bytes, StandardCharsets.UTF_8);
                         matches = diskApplicationId.equals(applicationId);
                     } catch (IOException e) {
                         // Hmm, the applicationId file was malformed or something. Assume it
@@ -393,7 +394,7 @@ public class Parse {
                 applicationIdFile = new File(dir, "applicationId");
                 try {
                     FileOutputStream out = new FileOutputStream(applicationIdFile);
-                    out.write(applicationId.getBytes("UTF-8"));
+                    out.write(applicationId.getBytes(StandardCharsets.UTF_8));
                     out.close();
                 } catch (IOException e) {
                     // Nothing we can really do about it.

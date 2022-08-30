@@ -128,7 +128,7 @@ public class CachedCurrentInstallationControllerTest {
         when(installationId.get()).thenReturn("testInstallationId");
         //noinspection unchecked
         ParseObjectStore<ParseInstallation> store = mock(ParseObjectStore.class);
-        when(store.getAsync()).thenReturn(Task.<ParseInstallation>forResult(null));
+        when(store.getAsync()).thenReturn(Task.forResult(null));
 
         // Create test controller
         CachedCurrentInstallationController controller =
@@ -220,7 +220,7 @@ public class CachedCurrentInstallationControllerTest {
         InstallationId installationId = mock(InstallationId.class);
         //noinspection unchecked
         ParseObjectStore<ParseInstallation> store = mock(ParseObjectStore.class);
-        when(store.deleteAsync()).thenReturn(Task.<Void>forResult(null));
+        when(store.deleteAsync()).thenReturn(Task.forResult(null));
 
         CachedCurrentInstallationController controller =
                 new CachedCurrentInstallationController(store, installationId);

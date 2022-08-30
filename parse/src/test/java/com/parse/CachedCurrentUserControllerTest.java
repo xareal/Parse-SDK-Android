@@ -49,13 +49,13 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
     public void testSetAsyncWithOldInMemoryCurrentUser() throws Exception {
         // Mock currentUser in memory
         ParseUser oldCurrentUser = mock(ParseUser.class);
-        when(oldCurrentUser.logOutAsync(anyBoolean())).thenReturn(Task.<Void>forResult(null));
+        when(oldCurrentUser.logOutAsync(anyBoolean())).thenReturn(Task.forResult(null));
 
         ParseUser.State state = new ParseUser.State.Builder().put("key", "value").build();
         ParseUser currentUser = ParseObject.from(state);
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.setAsync(currentUser)).thenReturn(Task.<Void>forResult(null));
+        when(store.setAsync(currentUser)).thenReturn(Task.forResult(null));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
         controller.currentUser = oldCurrentUser;
@@ -80,7 +80,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
         ParseUser currentUser = ParseObject.from(state);
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.setAsync(currentUser)).thenReturn(Task.<Void>forResult(null));
+        when(store.setAsync(currentUser)).thenReturn(Task.forResult(null));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
 
@@ -100,13 +100,13 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
     public void testSetAsyncWithPersistFailure() throws Exception {
         // Mock currentUser in memory
         ParseUser oldCurrentUser = mock(ParseUser.class);
-        when(oldCurrentUser.logOutAsync(anyBoolean())).thenReturn(Task.<Void>forResult(null));
+        when(oldCurrentUser.logOutAsync(anyBoolean())).thenReturn(Task.forResult(null));
 
         ParseUser currentUser = new ParseUser();
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
         when(store.setAsync(currentUser))
-                .thenReturn(Task.<Void>forError(new RuntimeException("failure")));
+                .thenReturn(Task.forError(new RuntimeException("failure")));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
         controller.currentUser = oldCurrentUser;
@@ -146,7 +146,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
     public void testGetAsyncWithNoInMemoryCurrentUserAndLazyLogin() throws Exception {
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.getAsync()).thenReturn(Task.<ParseUser>forResult(null));
+        when(store.getAsync()).thenReturn(Task.forResult(null));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
         ParseCorePlugins.getInstance().registerCurrentUserController(controller);
@@ -167,7 +167,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
     public void testGetAsyncWithNoInMemoryAndInDiskCurrentUserAndNoLazyLogin() throws Exception {
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.getAsync()).thenReturn(Task.<ParseUser>forResult(null));
+        when(store.getAsync()).thenReturn(Task.forResult(null));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
         // CurrentUser is null but currentUserMatchesDisk is true happens when a user logout
@@ -206,7 +206,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
                         .build();
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.getAsync()).thenReturn(Task.forResult(ParseObject.<ParseUser>from(state)));
+        when(store.getAsync()).thenReturn(Task.forResult(ParseObject.from(state)));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
 
@@ -222,7 +222,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
                         .build();
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.getAsync()).thenReturn(Task.forResult(ParseObject.<ParseUser>from(state)));
+        when(store.getAsync()).thenReturn(Task.forResult(ParseObject.from(state)));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
 
@@ -235,7 +235,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
         when(store.getAsync())
-                .thenReturn(Task.<ParseUser>forError(new RuntimeException("failure")));
+                .thenReturn(Task.forError(new RuntimeException("failure")));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
 
@@ -249,7 +249,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
         when(store.getAsync())
-                .thenReturn(Task.<ParseUser>forError(new RuntimeException("failure")));
+                .thenReturn(Task.forError(new RuntimeException("failure")));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
 
@@ -271,12 +271,12 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
     public void testLogOutAsyncWithDeleteInDiskCurrentUserSuccess() throws Exception {
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.deleteAsync()).thenReturn(Task.<Void>forResult(null));
+        when(store.deleteAsync()).thenReturn(Task.forResult(null));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
         // We set the currentUser to make sure getAsync() return a mock user
         ParseUser currentUser = mock(ParseUser.class);
-        when(currentUser.logOutAsync()).thenReturn(Task.<Void>forResult(null));
+        when(currentUser.logOutAsync()).thenReturn(Task.forResult(null));
         controller.currentUser = currentUser;
 
         ParseTaskUtils.wait(controller.logOutAsync());
@@ -294,8 +294,8 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
     public void testLogOutAsyncWithDeleteInDiskCurrentUserFailure() throws Exception {
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.getAsync()).thenReturn(Task.<ParseUser>forResult(null));
-        when(store.deleteAsync()).thenReturn(Task.<Void>forError(new RuntimeException("failure")));
+        when(store.getAsync()).thenReturn(Task.forResult(null));
+        when(store.deleteAsync()).thenReturn(Task.forError(new RuntimeException("failure")));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
 
@@ -355,7 +355,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
     public void testGetCurrentSessionTokenAsyncWithNoCurrentUserSet() throws Exception {
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.getAsync()).thenReturn(Task.<ParseUser>forResult(null));
+        when(store.getAsync()).thenReturn(Task.forResult(null));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
 
@@ -387,7 +387,7 @@ public class CachedCurrentUserControllerTest extends ResetPluginsParseTest {
     public void testClearFromDisk() {
         ParseObjectStore<ParseUser> store =
                 (ParseObjectStore<ParseUser>) mock(ParseObjectStore.class);
-        when(store.deleteAsync()).thenReturn(Task.<Void>forResult(null));
+        when(store.deleteAsync()).thenReturn(Task.forResult(null));
 
         CachedCurrentUserController controller = new CachedCurrentUserController(store);
 

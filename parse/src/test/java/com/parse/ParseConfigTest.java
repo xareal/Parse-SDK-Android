@@ -1049,7 +1049,7 @@ public class ParseConfigTest extends ResetPluginsParseTest {
     private ParseConfigController mockParseConfigControllerWithException(Exception exception) {
         ParseConfigController controller = mock(ParseConfigController.class);
         when(controller.getAsync(nullable(String.class)))
-                .thenReturn(Task.<ParseConfig>forError(exception));
+                .thenReturn(Task.forError(exception));
         return controller;
     }
 
@@ -1063,7 +1063,7 @@ public class ParseConfigTest extends ResetPluginsParseTest {
     private ParseCurrentConfigController mockParseCurrentConfigControllerWithException(
             Exception exception) {
         ParseCurrentConfigController controller = mock(ParseCurrentConfigController.class);
-        when(controller.getCurrentConfigAsync()).thenReturn(Task.<ParseConfig>forError(exception));
+        when(controller.getCurrentConfigAsync()).thenReturn(Task.forError(exception));
         return controller;
     }
 }

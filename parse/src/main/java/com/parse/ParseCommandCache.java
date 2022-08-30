@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
@@ -279,22 +280,14 @@ class ParseCommandCache extends ParseEventuallyQueue {
         Parse.requirePermission(Manifest.permission.ACCESS_NETWORK_STATE);
         TaskCompletionSource<JSONObject> tcs = new TaskCompletionSource<>();
         byte[] json;
-        try {
-            // If this object doesn't have an objectId yet, store the localId so we can remap it to
-            // the
-            // objectId after the save completes.
-            if (object != null && object.getObjectId() == null) {
-                command.setLocalId(object.getOrCreateLocalId());
-            }
-            JSONObject jsonObject = command.toJSONObject();
-            json = jsonObject.toString().getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            if (Parse.LOG_LEVEL_WARNING >= Parse.getLogLevel()) {
-                log.log(Level.WARNING, "UTF-8 isn't supported.  This shouldn't happen.", e);
-            }
-            notifyTestHelper(TestHelper.COMMAND_NOT_ENQUEUED);
-            return Task.forResult(null);
+        // If this object doesn't have an objectId yet, store the localId so we can remap it to
+        // the
+        // objectId after the save completes.
+        if (object != null && object.getObjectId() == null) {
+            command.setLocalId(object.getOrCreateLocalId());
         }
+        JSONObject jsonObject = command.toJSONObject();
+        json = jsonObject.toString().getBytes(StandardCharsets.UTF_8);
 
         // If this object by itself is larger than the full disk cache, then don't
         // even bother trying.

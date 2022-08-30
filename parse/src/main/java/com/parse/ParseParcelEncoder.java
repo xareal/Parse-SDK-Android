@@ -127,12 +127,12 @@ import org.json.JSONObject;
             } else {
                 throw new IllegalArgumentException(
                         "Could not encode this object into Parcel. "
-                                + object.getClass().toString());
+                                + object.getClass());
             }
 
         } catch (Exception e) {
             throw new IllegalArgumentException(
-                    "Could not encode this object into Parcel. " + object.getClass().toString());
+                    "Could not encode this object into Parcel. " + object.getClass());
         }
     }
 

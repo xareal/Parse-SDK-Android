@@ -56,7 +56,7 @@ public class ParseObjectTest extends ResetPluginsParseTest {
     private static void mockCurrentUserController() {
         ParseCurrentUserController userController = mock(ParseCurrentUserController.class);
         when(userController.getCurrentSessionTokenAsync()).thenReturn(Task.forResult("token"));
-        when(userController.getAsync()).thenReturn(Task.<ParseUser>forResult(null));
+        when(userController.getAsync()).thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerCurrentUserController(userController);
     }
 
@@ -157,7 +157,7 @@ public class ParseObjectTest extends ResetPluginsParseTest {
         for (int i = 0; i < 50000; i++) {
             obj =
                     ParseObject.fromJSON(
-                            json, "GameScore", ParseDecoder.get(), Collections.<String>emptySet());
+                            json, "GameScore", ParseDecoder.get(), Collections.emptySet());
         }
     }
 

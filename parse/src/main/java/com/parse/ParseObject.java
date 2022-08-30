@@ -2273,7 +2273,7 @@ public class ParseObject implements Parcelable {
             task = deepSaveAsync(estimatedData, sessionToken);
         }
 
-        return task.onSuccessTask(TaskQueue.<Void>waitFor(toAwait))
+        return task.onSuccessTask(TaskQueue.waitFor(toAwait))
                 .onSuccessTask(
                         task12 -> {
                             final Map<String, ParseObject> fetchedObjects = collectFetchedObjects();
@@ -2648,7 +2648,7 @@ public class ParseObject implements Parcelable {
      * @throws ParseException Throws an exception if the server is inaccessible.
      */
     public <T extends ParseObject> T fetch() throws ParseException {
-        return ParseTaskUtils.wait(this.<T>fetchInBackground());
+        return ParseTaskUtils.wait(this.fetchInBackground());
     }
 
     @SuppressWarnings("unchecked")
@@ -2694,7 +2694,7 @@ public class ParseObject implements Parcelable {
      * @param callback {@code callback.done(object, e)} is called when the fetch completes.
      */
     public final <T extends ParseObject> void fetchInBackground(GetCallback<T> callback) {
-        ParseTaskUtils.callbackOnMainThreadAsync(this.<T>fetchInBackground(), callback);
+        ParseTaskUtils.callbackOnMainThreadAsync(this.fetchInBackground(), callback);
     }
 
     /**
@@ -2731,7 +2731,7 @@ public class ParseObject implements Parcelable {
      * @throws ParseException Throws an exception if the server is inaccessible.
      */
     public <T extends ParseObject> T fetchIfNeeded() throws ParseException {
-        return ParseTaskUtils.wait(this.<T>fetchIfNeededInBackground());
+        return ParseTaskUtils.wait(this.fetchIfNeededInBackground());
     }
 
     /**
@@ -2743,7 +2743,7 @@ public class ParseObject implements Parcelable {
      * @param callback {@code callback.done(object, e)} is called when the fetch completes.
      */
     public final <T extends ParseObject> void fetchIfNeededInBackground(GetCallback<T> callback) {
-        ParseTaskUtils.callbackOnMainThreadAsync(this.<T>fetchIfNeededInBackground(), callback);
+        ParseTaskUtils.callbackOnMainThreadAsync(this.fetchIfNeededInBackground(), callback);
     }
 
     // Validates the delete method
@@ -2975,7 +2975,7 @@ public class ParseObject implements Parcelable {
 
         if (!ParseEncoder.isValidType(value)) {
             throw new IllegalArgumentException(
-                    "invalid type for value: " + value.getClass().toString());
+                    "invalid type for value: " + value.getClass());
         }
 
         performOperation(key, new ParseSetOperation(value));
@@ -3610,7 +3610,7 @@ public class ParseObject implements Parcelable {
      */
     public <T extends ParseObject> void fetchFromLocalDatastoreInBackground(
             GetCallback<T> callback) {
-        ParseTaskUtils.callbackOnMainThreadAsync(this.<T>fetchFromLocalDatastoreAsync(), callback);
+        ParseTaskUtils.callbackOnMainThreadAsync(this.fetchFromLocalDatastoreAsync(), callback);
     }
 
     /**

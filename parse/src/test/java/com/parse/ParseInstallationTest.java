@@ -221,7 +221,7 @@ public class ParseInstallationTest extends ResetPluginsParseTest {
         ParseCurrentInstallationController controller =
                 mock(ParseCurrentInstallationController.class);
         when(controller.setAsync(any(ParseInstallation.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerCurrentInstallationController(controller);
         // Mock return state
         ParseInstallation.State state =
@@ -245,7 +245,7 @@ public class ParseInstallationTest extends ResetPluginsParseTest {
         ParseCurrentInstallationController controller =
                 mock(ParseCurrentInstallationController.class);
         when(controller.setAsync(any(ParseInstallation.class)))
-                .thenReturn(Task.<Void>forResult(null));
+                .thenReturn(Task.forResult(null));
         ParseCorePlugins.getInstance().registerCurrentInstallationController(controller);
         // Mock return state
         ParseInstallation.State state =

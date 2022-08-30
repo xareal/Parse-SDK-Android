@@ -93,7 +93,7 @@ public class ParseFileUtilsTest {
             in = new FileInputStream(file);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             ParseIOUtils.copy(in, out);
-            content = new String(out.toByteArray());
+            content = out.toString();
         } finally {
             ParseIOUtils.closeQuietly(in);
         }
